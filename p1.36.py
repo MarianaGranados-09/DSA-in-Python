@@ -17,3 +17,18 @@ wordCount={}
 for item in NewList: #for each word in the list
     wordCount[item] = NewList.count(item) #Take each item from the word #list, and count them
 print(wordCount)
+
+
+
+#Python program to count how many times a letter appears in a name
+NameCount = {}
+
+def _countLetters(Name):
+    #n = len(Name)
+    for n in Name:
+        NameCount[n] = Name.count(n)
+    print(NameCount)
+
+
+_countLetters('Mariana Granados')
+
