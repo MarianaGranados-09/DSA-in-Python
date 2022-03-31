@@ -64,7 +64,7 @@ However, there are two important restrictions due to the algorithmic underpinnin
 in any particular order. The second is that only instances of immutable types can be added to a Python set. Therefore, objects such as integers, floating-point numbers, and character strings are eligible to be elements of a set.
 '''
 {'red','green'} #set
-{} #empty dictionary
+{} #empty dictionary set
 set() #empty set
 
 set( 'hello' ) #produces { h , e , l , o }
