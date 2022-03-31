@@ -1,4 +1,4 @@
-#Expressions, Operators and Precedence
+#Expressions, Operators, and Loops
 
 #Logical operator
 
