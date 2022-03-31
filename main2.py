@@ -1,4 +1,4 @@
-#Exception Handling
+#Exception Handling:
 """
 Exceptions are unexpected events that occur during the execution of a program. 
 It might result from a logical error or an unanticipated situation. In
