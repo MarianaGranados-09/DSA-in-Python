@@ -66,7 +66,7 @@ Defining the classes, together with their instance variables and methods, are ke
 
 """
 
-#Testing and Debugging
+#Testing and Debugging.
 
 #Testing is the process of experimentally checking the correctness of a program, while debugging is the process of tracking the execution of a program and discovering errors in it. 
 
