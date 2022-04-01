@@ -165,3 +165,60 @@ def binary_search(data, query):
 dat = [1,34,2,41,3]
 #print(len(dat))
 print(binary_search(dat, 41))
+
+
+## Problem - Rotated Lists
+
+
+'''You are given list of numbers, obtained by rotating a sorted list an unknown number of times. Write a function to determine the minimum number of times the original sorted list was rotated to obtain the given list. Your function should have the worst-case complexity of `O(log N)`, where N is the length of the list. You can assume that all the numbers in the list are unique.
+
+Example: The list `[5, 6, 9, 0, 2, 3, 4]` was obtained by rotating the sorted list `[0, 2, 3, 4, 5, 6, 9]` 3 times.
+
+We define "rotating a list" as removing the last element of the list and adding it before the first element. E.g. rotating the list `[3, 2, 4, 1]`produces `[1, 3, 2, 4]`. 
+
+"Sorted list" refers to a list where the elements are arranged in the increasing order  e.g. `[1, 3, 5, 7]`.
+'''
+
+#Input
+
+"""
+The input is a list of numbers
+E.g. nums = [5,6,9,0,2,3,4] was obtained by rotating the sorted list
+[0,2,3,4,5,6,9] 3 times
+
+The output will return an int rotations, which establishes the minimum number of rotations the original list was given
+"""
+
+def Num_rotations(nums):
+    n = len(nums)
+    high = n-1
+    low = 0
+
+    while low <= high:
+        mid = low + (high-low) // 2
+
+        #Calculate previous and next position from mid
+        prev = (mid-1+n)%n
+        next = (mid+1)%n
+
+        #checking if nums[mid] is the minimum number comparing it to nums[prev] and nums[next]
+
+        if nums[mid] < nums[prev] and nums[mid] <= nums[next]:
+            return mid #returns mid position, since nums[mid] is the minimum number in the list, this number corresponds to the min number of rotations made
+
+        #if the unsorted part of the array was not selected:
+        elif nums[mid] < nums[low]:
+            high = mid-1
+        elif nums[mid] > nums[high]:
+            low = mid + 1
+        else:
+            return 0 #no rotations made
+
+
+s = [15, 18, 2, 3, 6, 12]
+s1 = [5, 6, 9, 0, 2, 3, 4]
+s2 = [3, 2, 4, 1]
+print(Num_rotations(s1))
+
+
+
