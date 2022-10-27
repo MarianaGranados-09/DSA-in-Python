@@ -86,14 +86,89 @@ example, assume that a user of our class has a variable, my card, that identifie
 
 class CreditCard:
     #A consumer credit card
-
-    def __init__(sel, customer, bank, actn, limit):
+    #The __init__ function is called every time an object is created from a #class. The __init__ method lets the class initialize the object's attributes.
+    def __init__(self, customer, bank, acnt, limit):
         #Creates a new credit card instance
 
         #The initial balance is zero
         '''
         customer the name of the customer (e.g., 'John Smith')
-        banl the name of the bank (e.g., 'California Savings')
-        
-        
+        bank the name of the bank (e.g., 'California Savings')
+        acnt the account identifier (e.g., '5391 0375 9387 5309')
+        limit credit card limit (measured in dollars)
         '''
+
+        def get_customer(self):
+            #Return name of the customer
+            return self._customer
+        def get_bank(self):
+            #Return the banks name
+            return self._bank
+        def get_account(self):
+            #Return the card identifying number stored as string
+            return self._account
+        def get_limit(self):
+            #Return current credit limit
+            return self._limit
+        def get_balance(self):
+            #return current balance
+            return self._balance
+        def charge(self, price):
+            #Charge given price to card, assuming sufficient credit limit
+            #Return true if charge was processed; False if charge was denied
+            if price + self._balance > self._limit: #if charge would exceed limit, can't accept charge
+                return False
+            else:
+                self._balance += price
+                return True
+        
+        def make_payment(self, amount):
+            #Process customer payment that reduces balance
+            self._balance-=amount
+
+
+'''
+The Constructor
+A user can create an instance of the CreditCard class using a syntax as:
+cc = CreditCard( John Doe, 1st Bank , 5391 0375 9387 5309 , 1000)
+
+Internally, this results in a call to the specially named init method that
+ serves as the constructor of the class. Its primary responsibility is to 
+ establish the state of a newly created credit card object with 
+ appropriate instance variables. In the case of the CreditCard class, 
+ each object maintains five instance variables, which we name: 
+ customer, bank, account, limit, and balance. 
+'''
+
+#Encapsulation
+'''
+A single leading underscore in the
+name of a data member, such as balance, implies that it is intended 
+as nonpublic. Users of a class should not directly access such member
+
+'''
+
+"""
+We note that in the command, self. balance -= amount, the expression
+self._balance is qualified with the self identifier because it represents an instance variable of the card, while the unqualified amount represents the local parameter.
+"""
+if __name__ == '__main__':
+    wallet = []
+    wallet.append(CreditCard('John Bowman', 'California Savings', '5391 0375 9387 5309', 2500))
+    wallet.append(CreditCard('John Bowman', 'California Federal', '3845 0399 3395 1954', 3500))
+    wallet.append(CreditCard('John Bowman', 'California Finance', '5391 0375 9387 5309', 5000))
+
+    for val in range(1,17):
+        wallet[0].charge(val)
+        wallet[1].charge(2*val)
+        wallet[2].charge(3*val)
+
+    for c in range(3):
+        print('Customer =', wallet[c].get_customer())
+        print('Bank =',wallet[c].get_bank())
+        print('Account =', wallet[c].get_account())
+        print('Limit =', wallet[c].get_limit())
+        print('Balance =', wallet[c].get_balance())
+        while wallet[c].get_balance() > 100:
+            wallet[c].make_payment(100)
+            print('New balance =', wallet[c].get_balance())
